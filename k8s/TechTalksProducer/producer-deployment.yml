@@ -19,8 +19,8 @@ spec:
         run: rabbitmq-producer
     spec:
       containers:
-        - name: techtalksproducer
-          image: ngacrregistry.azurecr.io/nileshgule/techtalksproducer:rabbitmq-keda-3.1
+        - name: mqproducer
+          image: moonstone.azurecr.io/mqproducer:latest
           env:
             - name: ASPNETCORE_URLS
               value: http://0.0.0.0:8080

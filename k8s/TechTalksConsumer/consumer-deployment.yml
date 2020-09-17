@@ -19,8 +19,8 @@ spec:
         app: rabbitmq-consumer
     spec:
       containers:
-        - name: rabbitmq-consumer
-          image: ngacrregistry.azurecr.io/nileshgule/techtalksconsumer:rabbitmq-keda-3.1
+        - name: mqconsumer
+          image: moonstone.azurecr.io/mqconsumer:latest
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Development"
@@ -31,7 +31,7 @@ spec:
             - name: RABBITMQ_PASSWORD
               value: "PASSWORD"
             - name: RABBITMQ_BATCH_SIZE
-              value: "100"
+              value: "150"
           imagePullPolicy: Always
       restartPolicy: Always
       terminationGracePeriodSeconds: 30

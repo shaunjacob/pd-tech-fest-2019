@@ -1,0 +1,30 @@
+az aks get-credentials --name ms-aks-aue --resource-group ms-aks-rg
+
+#build acr image
+az acr build --registry moonstone --image moonstone.azurecr.io/mqproducer:latest . --file Dockerfile-MQProducer
+az acr build --registry moonstone --image moonstone.azurecr.io/mqconsumer:latest . --file Dockerfile-MQConsumer
+#Kubernetes commands
+kubectl get namespaces
+kubectl get deployments --namespace api
+kubectl get pods --namespace api
+kubectl get pods --namespace ingress
+kubectl get pods --namespace api -w
+
+#Kubectl describe
+kubectl --namespace api describe pods rhinestone-processor-86c6f48574-vj2tg
+
+#Kubectl delete
+kubectl --namespace api delete deployment rhinestone-processor
+
+#Kubectl apply
+kubectl apply -f rhinestone-processor-aue.yaml
+
+#Add players to DB
+{
+"name": "User",
+"id": 5085abb0-1c2a-4604-84f2-aaa264ba3626
+"level": "1"
+}
+
+#API Query
+http://20.53.73.201/api/v1/player/5085abb0-1c2a-4604-84f2-aaa264ba3626

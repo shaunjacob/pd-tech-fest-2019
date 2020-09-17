@@ -1,10 +1,10 @@
 Param(
     [parameter(Mandatory = $false)]
-    [string]$subscriptionName = "Microsoft Azure Sponsorship",
+    [string]$subscriptionName = "ShaunJacob CSU Azure",
     [parameter(Mandatory = $false)]
-    [string]$resourceGroupName = "demo-dear-azure-aksRG",
+    [string]$resourceGroupName = "aksdemo-rg",
     [parameter(Mandatory = $false)]
-    [string]$resourceGroupLocaltion = "South East Asia",
+    [string]$resourceGroupLocaltion = "Australia East",
     [parameter(Mandatory = $false)]
     [string]$clusterName = "aksCluster",
     [parameter(Mandatory = $false)]
@@ -12,7 +12,7 @@ Param(
     [parameter(Mandatory = $false)]
     [string]$kubernetesVersion = "1.11.2",
     [parameter(Mandatory = $false)]
-    [string]$acrRegistryName = "ngAcrRegistry"
+    [string]$acrRegistryName = "moonstone"
 
 )
 
@@ -50,6 +50,7 @@ if ($aksCLusterExists -eq $false) {
         --node-count=$workerNodeCount `
         --enable-managed-identity `
         --attach-acr=$acrRegistryName `
+        --generate-ssh-keys `
         --output=jsonc
 }
 # Get credentials for newly created cluster
